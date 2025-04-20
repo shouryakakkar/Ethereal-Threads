@@ -1,0 +1,29 @@
+{
+  "name": "ethereal-threads-backend",
+  "version": "1.0.0",
+  "description": "Backend for Ethereal Threads e-commerce platform",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "create-admin": "node src/scripts/createAdmin.js",
+    "check-server": "node src/scripts/checkServer.js",
+    "test-admin-login": "node src/scripts/testAdminLogin.js",
+    "check-api-connection": "node src/scripts/checkApiConnection.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.2",
+    "razorpay": "^2.9.6",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

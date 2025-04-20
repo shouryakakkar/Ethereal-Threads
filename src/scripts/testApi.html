@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Connection Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .container {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+      white-space: pre-wrap;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>API Connection Test</h1>
+  
+  <div class="container">
+    <h2>Admin Login Test</h2>
+    <div class="form-group">
+      <label for="apiUrl">API URL:</label>
+      <input type="text" id="apiUrl" value="http://localhost:5000" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" value="shourya@etherealthreads.com" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" value="EtherealAdmin@123" />
+    </div>
+    <button id="testButton">Test Connection</button>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('testButton').addEventListener('click', async () => {
+      const apiUrl = document.getElementById('apiUrl').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const resultElement = document.getElementById('result');
+      
+      resultElement.textContent = 'Testing connection...';
+      resultElement.className = 'result';
+      
+      try {
+        const response = await fetch(`${apiUrl}/api/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.success && data.user && data.user.role === 'admin') {
+          resultElement.textContent = `✅ Connection successful!\n\nResponse:\n${JSON.stringify(data, null, 2)}`;
+          resultElement.className = 'result success';
+        } else {
+          resultElement.textContent = `❌ Connection successful, but login failed.\n\nResponse:\n${JSON.stringify(data, null, 2)}`;
+          resultElement.className = 'result error';
+        }
+      } catch (error) {
+        resultElement.textContent = `❌ Connection failed: ${error.message}\n\nTroubleshooting steps:\n1. Make sure the backend server is running\n2. Check if the API URL is correct\n3. Check if there are any CORS issues\n4. Check if there are any network issues`;
+        resultElement.className = 'result error';
+      }
+    });
+  </script>
+</body>
+</html> 
