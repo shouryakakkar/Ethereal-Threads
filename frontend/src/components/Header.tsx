@@ -52,8 +52,13 @@ const Header = () => {
       <div className="container-custom flex items-center justify-between">
         <img 
           className='logo' 
-          src={`${import.meta.env.VITE_API_URL}/api/images/WhatsApp_Image_2025-03-30_at_23.41.44-removebg-preview.png`}
+          src={`${import.meta.env.VITE_API_URL}/api/images/static/logo.png`}
           alt="Ethereal Threads Logo"
+          onError={(e) => {
+            console.error('Logo image load error');
+            const target = e.target as HTMLImageElement;
+            target.src = '/placeholder-image.jpg';
+          }}
         />
         <Link to="/"></Link>
 
