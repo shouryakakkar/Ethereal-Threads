@@ -19,7 +19,9 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: '*', // Allow all origins during development
+  origin: process.env.NODE_ENV === 'production' 
+    ? process.env.FRONTEND_URL 
+    : '*', // Allow all origins during development
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization']
