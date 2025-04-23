@@ -69,7 +69,7 @@ const Home = () => {
             onError={(e) => {
               console.error('Image load error for hero image');
               const target = e.target as HTMLImageElement;
-              target.src = '/placeholder-image.jpg';
+              target.src = `${import.meta.env.VITE_API_URL}/api/images/static/placeholder-image.jpg`;
             }}
           />
         </div>
@@ -207,7 +207,7 @@ const TestimonialCard = ({
           onError={(e) => {
             console.error('Image load error for testimonial:', name);
             const target = e.target as HTMLImageElement;
-            target.src = '/placeholder-image.jpg';
+            target.src = `${import.meta.env.VITE_API_URL}/api/images/static/placeholder-image.jpg`;
           }}
         />
         <div>
