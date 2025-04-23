@@ -57,7 +57,7 @@ const Header = () => {
           onError={(e) => {
             console.error('Logo image load error');
             const target = e.target as HTMLImageElement;
-            target.src = '/placeholder-image.jpg';
+            target.src = `${import.meta.env.VITE_API_URL}/api/images/static/placeholder-image.jpg`;
           }}
         />
         <Link to="/"></Link>
