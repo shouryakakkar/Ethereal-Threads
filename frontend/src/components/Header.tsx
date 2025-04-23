@@ -50,7 +50,11 @@ const Header = () => {
       )}
     >
       <div className="container-custom flex items-center justify-between">
-        <img className='logo' src="src/pages/WhatsApp_Image_2025-03-30_at_23.41.44-removebg-preview.png" />
+        <img 
+          className='logo' 
+          src={`${import.meta.env.VITE_API_URL}/api/images/WhatsApp_Image_2025-03-30_at_23.41.44-removebg-preview.png`}
+          alt="Ethereal Threads Logo"
+        />
         <Link to="/"></Link>
 
         {/* Desktop Navigation */}

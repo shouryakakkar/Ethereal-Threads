@@ -80,9 +80,9 @@ const Home = () => {
       <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
-          { name: "Yogita", img: "src/pages/customes says/IMG_3942.JPG", quote: "very beautiful products" },
-          { name: "Khushboo",  img: "src/pages/customes says/IMG_4088.JPG", quote: "happy after buying products" },
-          { name: "Riti",  img: "src/pages/customes says/IMG_3996.JPG", quote: "Hardworking people." }
+          { name: "Ayesha", img: `${import.meta.env.VITE_API_URL}/api/images/IMG_3942.JPG`, quote: "Wow, this is gorgeous! I love how it’s minimalist but still has that earthy, unique vibe. And wait—you made this yourself? That’s insane! The fact that it’s eco-friendly too just makes it even more special. You have to start selling these!" },
+          { name: "Kritika",  img: `${import.meta.env.VITE_API_URL}/api/images/IMG_4088.JPG`, quote: "This is really impressive. Using sustainable materials like this is such a smart move—it’s so important right now. I like how you’ve combined style with purpose. You’ve got something powerful here, not just jewelry, but a message." },
+          { name: "Aditi",  img: `${import.meta.env.VITE_API_URL}/api/images/IMG_3996.JPG`, quote: "This is so cool! What’s it made of? It doesn’t even look like recycled stuff—it looks legit boutique-level. I’d totally wear this. Can you customize pieces too? Like if I wanted a specific color or shape?" }
         ].map((testimonial, index) => (
           <TestimonialCard 
             key={testimonial.name}
