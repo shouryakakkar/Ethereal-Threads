@@ -54,6 +54,20 @@ app.use('/images', (req, res, next) => {
   next();
 }, express.static(path.join(__dirname, '../public/images')));
 
+// Serve static images from the static directory
+app.use('/api/images/static', (req, res, next) => {
+  console.log('Static image request:', req.url);
+  console.log('Looking in:', path.join(__dirname, '../public/images/static', req.url));
+  next();
+}, express.static(path.join(__dirname, '../public/images/static')));
+
+// Also serve images from the API URL for compatibility
+app.use('/api/images', (req, res, next) => {
+  console.log('API image request:', req.url);
+  console.log('Looking in:', path.join(__dirname, '../public/images', req.url));
+  next();
+}, express.static(path.join(__dirname, '../public/images')));
+
 // Log all available image files on startup
 try {
   console.log('Products directory path:', productsPath);
