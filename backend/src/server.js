@@ -88,6 +88,22 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 
+// Add a root route handler
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Ethereal Threads API is running',
+    version: '1.0.0',
+    endpoints: [
+      '/api/auth',
+      '/api/products',
+      '/api/contact',
+      '/api/cart',
+      '/api/orders',
+      '/api/users'
+    ]
+  });
+});
+
 // Connect to MongoDB
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/ethereal-threads';
 
