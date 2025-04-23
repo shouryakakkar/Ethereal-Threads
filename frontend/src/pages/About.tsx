@@ -60,7 +60,7 @@ const About = () => {
               )}
             >
               <img 
-                src="src/pages/our stroy/WhatsApp Image 2025-03-26 at 16.59.38.jpeg" 
+                src={`${import.meta.env.VITE_API_URL}/api/images/static/about/story.jpeg`}
                 alt="Jewelry workshop" 
                 className="w-full h-auto" 
               />
@@ -121,25 +121,24 @@ const About = () => {
             <TeamMember
               name="Akshita Singh"
               role="Founder & Lead Designer"
-              image="src/pages/our team/WhatsApp Image 2025-03-26 at 16.19.50.jpeg"
+              image={`${import.meta.env.VITE_API_URL}/api/images/static/about/team1.jpeg`}
               delay={900}
               isVisible={isVisible}
             />
             <TeamMember
               name="Shourya Kakkar"
               role="Co-Founder & Tech Head"
-              image="src/pages/our team/shourya pfp.jpg"
+              image={`${import.meta.env.VITE_API_URL}/api/images/static/about/team2.jpg`}
               delay={1000}
               isVisible={isVisible}
             />
             <TeamMember
               name="Devyansh Mittal"
               role="Creative Director"
-              image="src/pages/our team/WhatsApp Image 2025-03-26 at 16.42.35.jpeg"
+              image={`${import.meta.env.VITE_API_URL}/api/images/static/about/team3.jpeg`}
               delay={1100}
               isVisible={isVisible}
             />
-
           </div>
         </div>
       </section>
