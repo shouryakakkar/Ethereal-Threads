@@ -598,14 +598,16 @@ const AdminDashboard: React.FC = () => {
                         <TableCell>
                           {product.image && (
                             <img
-                              src={`${import.meta.env.VITE_API_URL}${product.image}`}
+                              src={product.image.startsWith('http') 
+                                ? product.image 
+                                : `${import.meta.env.VITE_API_URL}/api/images/${product.image.split('/').pop()}`}
                               alt={product.name}
-                              className="w-16 h-16 object-cover rounded"
-                              onError={(e) => {
+                              className="w-16 h-16 object-cover rounded-md"
+                              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                                 console.error('Image load error for:', product.name);
                                 console.error('Image path:', product.image);
-                                console.error('Full image URL:', `${import.meta.env.VITE_API_URL}${product.image}`);
-                                const target = e.target as HTMLImageElement;
+                                console.error('Full image URL:', `${import.meta.env.VITE_API_URL}/api/images/${product.image.split('/').pop()}`);
+                                const target = e.currentTarget;
                                 target.src = '/placeholder-image.jpg';
                               }}
                             />
