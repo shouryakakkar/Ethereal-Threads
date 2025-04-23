@@ -92,19 +92,20 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       // Sync with backend
       const syncCart = async () => {
         try {
-          await fetch(`${import.meta.env.VITE_API_URL}/api/cart/update`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-              items: items.map(item => ({
+          // Update each item individually
+          for (const item of items) {
+            await fetch(`${import.meta.env.VITE_API_URL}/api/cart/update`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
                 productId: item._id,
                 quantity: item.quantity
-              }))
-            })
-          });
+              })
+            });
+          }
         } catch (error) {
           console.error('Error syncing cart:', error);
         }
