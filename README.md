@@ -66,7 +66,7 @@ npm install
 npm run dev
 
 # Start backend (from backend directory)
-npm start
+npm run dev
 ```
 
 ## Project Structure
