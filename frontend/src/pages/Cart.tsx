@@ -37,13 +37,15 @@ export default function Cart() {
               <Card key={item._id} className="mb-4">
                 <CardContent className="flex items-center p-4">
                   <img
-                    src={`${import.meta.env.VITE_API_URL}${item.image}`}
+                    src={item.image.startsWith('http') 
+                      ? item.image 
+                      : `${import.meta.env.VITE_API_URL}/api/images/${item.image.split('/').pop()}`}
                     alt={item.name}
-                    className="w-24 h-24 object-cover rounded-lg mr-4"
+                    className="w-24 h-24 object-cover rounded-md"
                     onError={(e) => {
                       console.error('Image load error for:', item.name);
                       console.error('Image path:', item.image);
-                      console.error('Full image URL:', `${import.meta.env.VITE_API_URL}${item.image}`);
+                      console.error('Full image URL:', `${import.meta.env.VITE_API_URL}/api/images/${item.image.split('/').pop()}`);
                       const target = e.target as HTMLImageElement;
                       target.src = '/placeholder-image.jpg';
                     }}

@@ -44,7 +44,7 @@ const About = () => {
             >
               <h2 className="text-3xl font-bold mb-6">The Ethereal Threads Journey</h2>
               <p className="text-gray-600 mb-4 leading-relaxed">
-                Ethereal Threads was born from a shared passion for artistry and a vision to create jewelry that transcends mere accessories. Our journey began in 2025 when three friends with diverse backgrounds in design, technology, and business came together with a common dream: to craft jewelry that tells stories and captures emotions.
+                Ethereal Threads was born from a shared passion for artistry and a vision to create jewelry that transcends mere accessories. Our journey began in 2025 when friends with diverse backgrounds in design, technology, and business came together with a common dream: to craft jewelry that tells stories and captures emotions.
               </p>
               <p className="text-gray-600 mb-4 leading-relaxed">
                 What started as a small workshop has evolved into a beloved brand that celebrates the intersection of traditional craftsmanship and contemporary design. Each piece in our collection is thoughtfully created, drawing inspiration from nature, culture, and the stories of the people who wear them.
@@ -117,11 +117,12 @@ const About = () => {
           >
             Meet Our Team
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0">
             <TeamMember
               name="Akshita Singh"
               role="Founder & Lead Designer"
               image={`${import.meta.env.VITE_API_URL}/api/images/static/about/team1.jpeg`}
+              link="https://linkedin.com/in/akshita-singh-815276246/"
               delay={900}
               isVisible={isVisible}
             />
@@ -129,16 +130,11 @@ const About = () => {
               name="Shourya Kakkar"
               role="Co-Founder & Tech Head"
               image={`${import.meta.env.VITE_API_URL}/api/images/static/about/team2.jpg`}
+              link="https://linkedin.com/in/shouryakakkar"
               delay={1000}
               isVisible={isVisible}
             />
-            <TeamMember
-              name="Devyansh Mittal"
-              role="Creative Director"
-              image={`${import.meta.env.VITE_API_URL}/api/images/static/about/team3.jpeg`}
-              delay={1100}
-              isVisible={isVisible}
-            />
+
           </div>
         </div>
       </section>
@@ -178,32 +174,56 @@ const TeamMember = ({
   name, 
   role, 
   image, 
+  link,
   delay = 0,
   isVisible 
 }: { 
   name: string; 
   role: string; 
   image: string;
+  link?: string;
   delay?: number;
   isVisible: boolean;
-}) => (
-  <div 
-    className={cn(
-      "text-center transition-all duration-700 transform hover-lift",
-      isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-    )}
-    style={{ transitionDelay: `${delay}ms` }}
-  >
-    <div className="rounded-full overflow-hidden w-48 h-48 mx-auto mb-4 shadow-md">
-      <img 
-        src={image} 
-        alt={name} 
-        className="w-full h-full object-cover" 
-      />
+}) => {
+  const content = (
+    <div 
+      className={cn(
+        "text-center transition-all duration-700 transform hover-lift cursor-pointer",
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+      )}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <div className="rounded-full overflow-hidden w-48 h-48 mx-auto mb-4 shadow-md hover:shadow-lg transition-shadow duration-300">
+        <img 
+          src={image} 
+          alt={name} 
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" 
+        />
+      </div>
+      <h3 className="text-xl font-semibold hover:text-black-600 transition-colors duration-300">{name}</h3>
+      <p className="text-gray-400">{role}</p>
+      {link && (
+        <p className="text-sm text-black-500 mt-2 hover:text-black-700 transition-colors duration-300">
+          View Profile →
+        </p>
+      )}
     </div>
-    <h3 className="text-xl font-semibold">{name}</h3>
-    <p className="text-gray-400">{role}</p>
-  </div>
-);
+  );
+
+  if (link) {
+    return (
+      <a 
+        href={link} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="block"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return content;
+};
 
 export default About;

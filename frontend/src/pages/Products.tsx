@@ -182,14 +182,16 @@ const Products = () => {
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <div className="relative">
-                    <img 
-                      src={`${import.meta.env.VITE_API_URL}${product.image}`}
-                      alt={product.name} 
-                      className="w-full h-48 object-cover" 
+                    <img
+                      src={product.image.startsWith('http') 
+                        ? product.image 
+                        : `${import.meta.env.VITE_API_URL}/api/images/${product.image.split('/').pop()}`}
+                      alt={product.name}
+                      className="w-full h-80 object-cover rounded-md"
                       onError={(e) => {
                         console.error('Image load error for:', product.name);
                         console.error('Image path:', product.image);
-                        console.error('Full image URL:', `${import.meta.env.VITE_API_URL}${product.image}`);
+                        console.error('Full image URL:', `${import.meta.env.VITE_API_URL}/api/images/${product.image.split('/').pop()}`);
                         const target = e.target as HTMLImageElement;
                         target.src = '/placeholder-image.jpg';
                       }}
@@ -200,9 +202,9 @@ const Products = () => {
                       </span>
                     )}
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
-                    <p className="text-glam-purple font-bold mb-3">RS {product.price.toFixed(2)}</p>
+                  <div className="p-6">
+                    <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+                    <p className="text-glam-purple font-bold mb-4">RS {product.price.toFixed(2)}</p>
                     <Button 
                       className="w-full bg-glam-purple hover:bg-glam-purple-dark"
                       onClick={() => handleAddToCart(product)}

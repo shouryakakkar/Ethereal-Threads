@@ -51,6 +51,7 @@ if (!fs.existsSync(productsPath)) {
 app.use('/images', (req, res, next) => {
   console.log('Static file request:', req.url);
   console.log('Looking in:', path.join(__dirname, '../public/images', req.url));
+  console.log('File exists:', fs.existsSync(path.join(__dirname, '../public/images', req.url)));
   next();
 }, express.static(path.join(__dirname, '../public/images')));
 
@@ -58,6 +59,7 @@ app.use('/images', (req, res, next) => {
 app.use('/api/images/static', (req, res, next) => {
   console.log('Static image request:', req.url);
   console.log('Looking in:', path.join(__dirname, '../public/images/static', req.url));
+  console.log('File exists:', fs.existsSync(path.join(__dirname, '../public/images/static', req.url)));
   next();
 }, express.static(path.join(__dirname, '../public/images/static')));
 
@@ -65,6 +67,7 @@ app.use('/api/images/static', (req, res, next) => {
 app.use('/api/images', (req, res, next) => {
   console.log('API image request:', req.url);
   console.log('Looking in:', path.join(__dirname, '../public/images', req.url));
+  console.log('File exists:', fs.existsSync(path.join(__dirname, '../public/images', req.url)));
   next();
 }, express.static(path.join(__dirname, '../public/images')));
 
